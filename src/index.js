@@ -6,10 +6,10 @@ import { getArg } from './utils';
 
 const start = () => {
     const arg = getArg();
-    console.log('arg: ', arg);
     let dataStruct = initialDataStruct;
-    dataStruct = parse(dataStruct);
+    dataStruct = parse(dataStruct, arg);
     dataStruct = solve(dataStruct);
+    console.log('dataStruct: ', dataStruct);
     printSolution(dataStruct);
 };
 
