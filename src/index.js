@@ -9,7 +9,8 @@ const start = () => {
     let dataStruct = initialDataStruct;
     dataStruct = parse(dataStruct, arg);
     dataStruct = solve(dataStruct);
-    console.log('dataStruct: ', dataStruct);
+    const util = require('util')
+    console.log(util.inspect(dataStruct, false, null))
     printSolution(dataStruct);
 };
 

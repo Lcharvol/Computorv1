@@ -5,37 +5,35 @@ import {
     map,
     replace,
     drop,
+    dropLast,
     dropWhile,
+    dropLastWhile,
 } from 'ramda';
 
 import {
     SEPARATOR,
     LESS,
     ADD,
+    MULT,
+    POWER,
 } from '../constants/symbols';
 
 const storeTerms = (dataStruct, rightSideTerms, leftSideTerms) => {
     map(rightSideTerm => {
-        let a = 0;
-        let p = drop(1, dropWhile(c => c !== '^' , rightSideTerm));
+        let a = parseFloat(dropLast(1, dropLastWhile(c => c !== MULT , rightSideTerm)));
+        let p = parseFloat(drop(1, dropWhile(c => c !== POWER , rightSideTerm)));
         dataStruct.terms.rightSide = [
             ...dataStruct.terms.rightSide,
-            {
-                a,
-                p,
-            },
+            {a,p},
         ];
     }, rightSideTerms);
 
     map(leftSideTerm => {
-        let a = 0;
-        let p = drop(1, dropWhile(c => c !== '^' , leftSideTerm));
+        let a = parseFloat(dropLast(1, dropLastWhile(c => c !== MULT , leftSideTerm)));
+        let p = parseFloat(drop(1, dropWhile(c => c !== POWER , leftSideTerm)));
         dataStruct.terms.leftSide = [
             ...dataStruct.terms.leftSide,
-            {
-                a,
-                p,
-            },
+            {a,p},
         ];
     }, leftSideTerms);
     return dataStruct;
@@ -54,7 +52,6 @@ const parse = (dataStruct, arg) => {
     const rightSide = sides[1];
     const leftSideTerms = getTerms(leftSide);
     const rightSideTerms = getTerms(rightSide);
-    console.log('leftSideTerms: ', leftSideTerms);
     dataStruct = storeTerms(dataStruct, rightSideTerms, leftSideTerms)
     return dataStruct;
 };
