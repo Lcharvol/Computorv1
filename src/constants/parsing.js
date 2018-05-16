@@ -1,0 +1,1 @@
+export const ARGS_NUMBER = 3;
