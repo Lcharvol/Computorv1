@@ -29,10 +29,10 @@ export const printReducedEquation = dataStruct => {
         };
         res += `${op} ${a} * X^${p} `;
     },reducedEquation);
-    print(`Reduced form:${res}`, FgGreen);
+    print(`Reduced form:${res} = 0`, FgGreen);
 };
 
-const printSolution = () => {
+const printSolution = dataStruct => {
 };
 
 export default printSolution;
