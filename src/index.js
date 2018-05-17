@@ -8,8 +8,8 @@ const start = () => {
     const arg = getArg();
     let dataStruct = initialDataStruct;
     dataStruct = parse(dataStruct, arg);
-    printPolynomialDegree(dataStruct);
     printReducedEquation(dataStruct);
+    printPolynomialDegree(dataStruct);
     dataStruct = solve(dataStruct);
     const util = require('util')
     console.log(util.inspect(dataStruct, false, null))

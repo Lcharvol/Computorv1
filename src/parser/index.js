@@ -8,6 +8,9 @@ import {
     dropLast,
     dropWhile,
     dropLastWhile,
+    find,
+    prop,
+    propEq,
 } from 'ramda';
 
 import {
@@ -47,6 +50,18 @@ const getTerms = side => {
     return terms;
 };
 
+const detDiscriminant = dataStruct => {
+    const { reducedEquation } = dataStruct;
+    const a = prop('a', find(propEq('p', 2), reducedEquation));
+    const b = prop('a', find(propEq('p', 1), reducedEquation));
+    const c = prop('a', find(propEq('p', 0), reducedEquation));
+    const discriminant = (b * b) - (4 * a * c);
+    return {
+        ...dataStruct,
+        discriminant,
+    }
+};
+
 const parse = (dataStruct, arg) => {
     const sides = split(SEPARATOR, arg);
     const leftSide = sides[0];
@@ -55,6 +70,7 @@ const parse = (dataStruct, arg) => {
     const rightSideTerms = getTerms(rightSide);
     dataStruct = storeTerms(dataStruct, rightSideTerms, leftSideTerms);
     dataStruct = getReducedEquation(dataStruct);
+    dataStruct = detDiscriminant(dataStruct);
     return dataStruct;
 };
 
