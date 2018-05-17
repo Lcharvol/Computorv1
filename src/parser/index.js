@@ -17,6 +17,7 @@ import {
     MULT,
     POWER,
 } from '../constants/symbols';
+import getReducedEquation from './reduce';
 
 const storeTerms = (dataStruct, rightSideTerms, leftSideTerms) => {
     map(rightSideTerm => {
@@ -42,7 +43,7 @@ const storeTerms = (dataStruct, rightSideTerms, leftSideTerms) => {
 const getTerms = side => {
     side = replace(/ /g, '', side);
     let terms = split(ADD, side);
-    terms = flatten(map(term => split(LESS, term), terms));
+    terms = flatten(map(term => term.split(/(?=-)/g), terms));
     return terms;
 };
 
@@ -52,7 +53,8 @@ const parse = (dataStruct, arg) => {
     const rightSide = sides[1];
     const leftSideTerms = getTerms(leftSide);
     const rightSideTerms = getTerms(rightSide);
-    dataStruct = storeTerms(dataStruct, rightSideTerms, leftSideTerms)
+    dataStruct = storeTerms(dataStruct, rightSideTerms, leftSideTerms);
+    dataStruct = getReducedEquation(dataStruct);
     return dataStruct;
 };
 
