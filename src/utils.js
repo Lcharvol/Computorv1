@@ -24,5 +24,8 @@ export const getPolynomialDegree = dataStruct => {
         let { p } = term;
         if(p > maxDegree) maxDegree = p;
     },leftSide);
-    return maxDegree;
+    return {
+        ...dataStruct,
+        polynomialDegree: maxDegree,
+    };
 };

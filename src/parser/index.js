@@ -21,6 +21,7 @@ import {
     POWER,
 } from '../constants/symbols';
 import getReducedEquation from './reduce';
+import { getPolynomialDegree } from '../utils';
 
 const storeTerms = (dataStruct, rightSideTerms, leftSideTerms) => {
     map(rightSideTerm => {
@@ -69,6 +70,7 @@ const parse = (dataStruct, arg) => {
     const leftSideTerms = getTerms(leftSide);
     const rightSideTerms = getTerms(rightSide);
     dataStruct = storeTerms(dataStruct, rightSideTerms, leftSideTerms);
+    dataStruct = getPolynomialDegree(dataStruct);
     dataStruct = getReducedEquation(dataStruct);
     dataStruct = detDiscriminant(dataStruct);
     return dataStruct;

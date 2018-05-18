@@ -6,11 +6,9 @@ import {
 import { FgGreen } from '../constants/colors';
 import { MAX_POLYNOMIAL_DEGREE } from '../constants/parsing';
 import print from '../print';
-import { getPolynomialDegree } from '../utils';
 import { maxDegreeExit } from '../exit';
 
-export const printPolynomialDegree = dataStruct => {
-    const degree = getPolynomialDegree(dataStruct)
+export const printPolynomialDegree = degree => {
     print(`Polynomial degree: ${degree}`, FgGreen);
     if(degree > MAX_POLYNOMIAL_DEGREE) maxDegreeExit();
 };
@@ -31,8 +29,3 @@ export const printReducedEquation = dataStruct => {
     },reducedEquation);
     print(`Reduced form:${res} = 0`, FgGreen);
 };
-
-const printSolution = dataStruct => {
-};
-
-export default printSolution;
