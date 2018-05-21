@@ -19,14 +19,21 @@ const solveFirstDegree = dataStruct => {
 
 const solveSecondDegree = dataStruct => {
     const { reducedEquation, discriminant } = dataStruct;
-    const res1 = 0;
-    const res2 = 0;
+    let res1 = 0;
+    let res2 = 0;
+    const a = prop('a', find(propEq('p', 2), reducedEquation));
+    const b = prop('a', find(propEq('p', 1), reducedEquation));
     if(discriminant > 0) {
+        const r = Math.sqrt(discriminant);
+        res1 = (-b + r) / (2 * a);
+        res2 = (-b - r) / (2 * a);
         print('Discriminant is strictly positive, the two solutions are:', FgGreen);
         print(res1, FgGreen);
         print(res2, FgGreen);
     } else if(discriminant === 0) {
+        res1 = -b / (2 * a)
         print('Discriminant is null, the only solution is:', FgGreen);
+        print(res1, FgGreen);
     } else {
         print('Discriminant is negative, their is no solution.', FgGreen);
     };

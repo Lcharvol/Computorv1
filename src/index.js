@@ -8,8 +8,6 @@ const start = () => {
     let dataStruct = initialDataStruct;
     dataStruct = parse(dataStruct, arg);
     solve(dataStruct);
-    const util = require('util')
-    console.log(util.inspect(dataStruct, false, null))
 };
 
 start();
