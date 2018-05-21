@@ -7,6 +7,7 @@ import {
 import { printPolynomialDegree, printReducedEquation } from '../print/solution';
 import print from '../print';
 import { FgGreen } from '../constants/colors';
+import { maxDegreeExit } from '../exit';
 
 const solveFirstDegree = dataStruct => {
     const { reducedEquation } = dataStruct;
@@ -42,7 +43,10 @@ const solveSecondDegree = dataStruct => {
 const solve = dataStruct => {
     const { polynomialDegree } = dataStruct;
     printReducedEquation(dataStruct);
-    if (equals(polynomialDegree, 1)) {
+    if(equals(polynomialDegree, 0)) {
+        printPolynomialDegree(polynomialDegree);
+        print('All real number are the solution.', FgGreen);
+    } else if (equals(polynomialDegree, 1)) {
         printPolynomialDegree(polynomialDegree);
         solveFirstDegree(dataStruct);
     } else if (equals(polynomialDegree, 2)) {
