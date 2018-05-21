@@ -29,3 +29,15 @@ export const getPolynomialDegree = dataStruct => {
         polynomialDegree: maxDegree,
     };
 };
+
+export const getSqrt = (nb, min, max) => {
+    let middle = (min + max) / 2;
+    let x = middle * middle;
+    if (x === nb) {
+        return middle;
+    } else if (x < nb) {
+        return getSqrt(nb, middle, max);
+    } else {
+        return getSqrt(nb, min, middle);
+    }
+};

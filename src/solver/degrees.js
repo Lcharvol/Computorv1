@@ -8,6 +8,7 @@ import {
 import { printPolynomialDegree } from '../print/solution';
 import { FgGreen, FgRed } from '../constants/colors';
 import print from '../print';
+import { getSqrt } from '../utils';
 
 export const solverZeroDegree = dataStruct => {
     const { reducedEquation, polynomialDegree } = dataStruct;
@@ -37,7 +38,7 @@ export const solveSecondDegree = dataStruct => {
     const a = prop('a', find(propEq('p', 2), reducedEquation));
     const b = prop('a', find(propEq('p', 1), reducedEquation));
     if(discriminant > 0) {
-        const r = Math.sqrt(discriminant);
+        const r = getSqrt(discriminant, 0, discriminant);
         res1 = (-b + r) / (2 * a);
         res2 = (-b - r) / (2 * a);
         print('Discriminant is strictly positive, the two solutions are:', FgGreen);
